@@ -49,13 +49,6 @@
 require('dotenv').config();
 const { Pool } = require('pg');
 
-// const isProduction = process.env.NODE_ENV === 'production';
-
-// // Choose DB URL
-// const connectionString = isProduction
-//   ? process.env.SUPABASE_DB_URL   // Use Supabase when in production
-//   : process.env.LOCAL_DB_URL;     // Use local DB in development
-
 const isProduction = process.env.NODE_ENV === 'production';
 
 // Always prefer Supabase, else fallback to Local
