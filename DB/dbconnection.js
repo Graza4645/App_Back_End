@@ -46,14 +46,68 @@
 
 
 
+// require('dotenv').config();
+// const { Pool } = require('pg');
+
+// const isProduction = process.env.NODE_ENV === 'production';
+
+// // Always prefer Supabase, else fallback to Local
+// const connectionString = process.env.SUPABASE_DB_URL || process.env.LOCAL_DB_URL;
+
+
+// if (!connectionString) {
+//   console.error('❌ No database connection string found!');
+//   console.log('Environment:', process.env.NODE_ENV);
+//   console.log('Available env vars:', Object.keys(process.env).filter(key => key.includes('DB')));
+//   process.exit(1);
+// }
+
+// const pool = new Pool({
+//   connectionString,
+//   ssl: isProduction ? { rejectUnauthorized: false } : false, // Only use SSL in production
+// });
+
+// // Test connection
+// pool.query('SELECT NOW()')
+//   .then(res => {
+//     console.log(`✅ Connected to ${isProduction ? 'Supabase' : 'Local'} Database`);
+//     console.log('Connection time:', res.rows[0].now);
+//     console.log('Connection string (masked):', connectionString?.replace(/:[^:@]*@/, ':****@'));
+
+//   })
+//   .catch(err => {
+//     console.error('❌ Failed to connect to database:');
+//     console.error('Error code:', err.code);
+//     console.error('Error message:', err.message);
+//     console.error('Connection string (masked):', connectionString?.replace(/:[^:@]*@/, ':****@'));
+//   });
+
+// module.exports = pool;
+
+////////////  final worked
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 require('dotenv').config();
 const { Pool } = require('pg');
 
-const isProduction = process.env.NODE_ENV === 'production';
-
-// Always prefer Supabase, else fallback to Local
 const connectionString = process.env.SUPABASE_DB_URL || process.env.LOCAL_DB_URL;
-
 
 if (!connectionString) {
   console.error('❌ No database connection string found!');
@@ -64,16 +118,15 @@ if (!connectionString) {
 
 const pool = new Pool({
   connectionString,
-  ssl: isProduction ? { rejectUnauthorized: false } : false, // Only use SSL in production
+  ssl: { rejectUnauthorized: false }, // ✅ Always enable SSL (safe for both local + Vercel)
 });
 
 // Test connection
 pool.query('SELECT NOW()')
   .then(res => {
-    console.log(`✅ Connected to ${isProduction ? 'Supabase' : 'Local'} Database`);
+    console.log(`✅ Connected to Database`);
     console.log('Connection time:', res.rows[0].now);
     console.log('Connection string (masked):', connectionString?.replace(/:[^:@]*@/, ':****@'));
-
   })
   .catch(err => {
     console.error('❌ Failed to connect to database:');
@@ -83,9 +136,6 @@ pool.query('SELECT NOW()')
   });
 
 module.exports = pool;
-
-
-
 
 
 

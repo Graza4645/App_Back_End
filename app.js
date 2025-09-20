@@ -50,7 +50,7 @@ app.use('/getvisitorStudent', getvisitorStudent)
 app.use('/getvisitorStaff', getvisitorStaff)
 app.use('/deletevistorStaff', deletevistorStaff)
 app.use('/deletevistorStudent', deletevistorStudent);
-app.use('/admissioncraete', admissioncreate )
+app.use('/admissioncreate', admissioncreate )
 app.use('/getadmission', admissionget);
 app.use('/createcalllogs', createcalllog)
 app.use('/getcallogs', getcallogs)
