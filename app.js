@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const cors = require('cors');
 
+var checssl= require('./routes/chekssl')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var createStaff = require('./routes/createStaff')
@@ -40,6 +41,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+app.use('/chekssl',checssl);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/createstaff', createStaff)
