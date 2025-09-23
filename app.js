@@ -5,6 +5,10 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const cors = require('cors');
 
+
+
+var testdb= require('./routes/test-db')
+var checssl= require('./routes/chekssl')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var createStaff = require('./routes/createStaff')
@@ -40,6 +44,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+app.use('/test-db',testdb); 
+app.use('/chekssl',checssl); 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/createstaff', createStaff)
@@ -50,7 +57,7 @@ app.use('/getvisitorStudent', getvisitorStudent)
 app.use('/getvisitorStaff', getvisitorStaff)
 app.use('/deletevistorStaff', deletevistorStaff)
 app.use('/deletevistorStudent', deletevistorStudent);
-app.use('/admissioncraete', admissioncreate )
+app.use('/admissioncreate', admissioncreate )
 app.use('/getadmission', admissionget);
 app.use('/createcalllogs', createcalllog)
 app.use('/getcallogs', getcallogs)
